@@ -29,7 +29,7 @@ class EmployeeAddTest {
     @BeforeEach
     void setUp() {
         MockitoAnnotations.openMocks(this);
-        employee = new Employee("Zeyad", LocalDate.of(1990, 12, 21), "Male", LocalDate.of(2012, 6, 1), "Engineering", Set.of("Java", "Spring", "SQL"), null);
+        employee = new Employee("Zeyad", LocalDate.of(1990, 12, 21), "Male", LocalDate.of(2012, 6, 1), "Engineering", Set.of("Java", "Spring", "SQL"), 1);
     }
 
 

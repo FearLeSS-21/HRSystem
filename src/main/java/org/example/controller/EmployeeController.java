@@ -8,7 +8,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
-@RequestMapping("/employees/addemployee")
+@RequestMapping("/employees")
 public class EmployeeController {
 
     private final EmployeeService employeeService;
@@ -18,7 +18,8 @@ public class EmployeeController {
         this.employeeService = employeeService;
     }
 
-    @PostMapping("/employees")
+    // Add Employee with team_id
+    @PostMapping("/addEmployee")
     public ResponseEntity<Employee> addEmployee(@RequestBody Employee employee) {
         try {
             Employee savedEmployee = employeeService.addEmployee(employee);
@@ -27,5 +28,6 @@ public class EmployeeController {
             return new ResponseEntity<>(null, HttpStatus.BAD_REQUEST);
         }
     }
+
 
 }
