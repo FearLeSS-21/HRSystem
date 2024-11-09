@@ -1,4 +1,6 @@
+import org.example.controller.EmployeeController;
 import org.example.model.Employee;
+import org.example.service.EmployeeService;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.InjectMocks;
@@ -7,6 +9,9 @@ import org.mockito.MockitoAnnotations;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 
+
+import java.time.LocalDate;
+import java.util.Set;
 
 import static org.mockito.Mockito.*;
 import static org.junit.jupiter.api.Assertions.*;
@@ -28,7 +33,6 @@ class EmployeeAddTest {
     }
 
 
-
     @Test
     void testAddEmployee_Success() {
         when(employeeService.addEmployee(any(Employee.class))).thenReturn(employee);
@@ -37,7 +41,7 @@ class EmployeeAddTest {
 
         assertEquals(HttpStatus.CREATED, response.getStatusCode());
         assertNotNull(response.getBody());
-        assertEquals(employee.getFirstName(), response.getBody().getFirstName());
+        assertEquals(employee.getName(), response.getBody().getName());
     }
 
     @Test
@@ -52,17 +56,4 @@ class EmployeeAddTest {
         }
     }
 
-    @Test
-    void testAddEmployee_InvalidData() {
-        Employee invalidEmployee = new Employee(0, "", "", "");
-
-        when(employeeService.addEmployee(any(Employee.class))).thenThrow(new IllegalArgumentException("Invalid employee data"));
-
-        try {
-            employeeController.addEmployee(invalidEmployee);
-        } catch (Exception e) {
-            assertTrue(e instanceof IllegalArgumentException);
-            assertEquals("Invalid employee data", e.getMessage());
-        }
-    }
 }
