@@ -7,6 +7,8 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 @RestController
 @RequestMapping("/teams")
 public class TeamController {
@@ -18,7 +20,6 @@ public class TeamController {
         this.teamService = teamService;
     }
 
-    // Add a new Team
     @PostMapping("/addTeam")
     public ResponseEntity<Team> addTeam(@RequestBody Team team) {
         try {
@@ -29,4 +30,13 @@ public class TeamController {
         }
     }
 
+    @GetMapping("/getAllTeams")
+    public ResponseEntity<List<Team>> getAllTeams() {
+        try {
+            List<Team> teams = teamService.getAllTeams();
+            return new ResponseEntity<>(teams, HttpStatus.OK);
+        } catch (Exception e) {
+            return new ResponseEntity<>(null, HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+    }
 }

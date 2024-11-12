@@ -1,9 +1,11 @@
 package org.example.service;
 
 import org.example.model.Team;
-import org.example.Repositry.TeamRepository;
+import org.example.repository.TeamRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import java.util.List;
 
 @Service
 public class TeamService {
@@ -20,4 +22,8 @@ public class TeamService {
         return teamRepository.save(team);
     }
 
+    // Get all Teams
+    public List<Team> getAllTeams() {
+        return teamRepository.findAll();  // This works because teamRepository is injected
+    }
 }

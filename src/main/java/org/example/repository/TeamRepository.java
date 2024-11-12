@@ -1,4 +1,4 @@
-package org.example.Repositry;
+package org.example.repository;
 
 import org.example.model.Team;
 import org.springframework.data.jpa.repository.JpaRepository;

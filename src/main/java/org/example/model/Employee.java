@@ -43,13 +43,11 @@ public class Employee {
     @OneToMany(mappedBy = "manager")
     private Set<Employee> subordinates;
 
-    public <E> Employee(String zeyad, LocalDate of, String male, LocalDate of1, String engineering, Set<E> java, int i) {
-    }
-
     public double getNetSalary() {
         double taxAmount = grossSalary * 0.15;
         double insuranceAmount = 500;
         return grossSalary - taxAmount - insuranceAmount;
     }
+
 
 }
